@@ -1,4 +1,4 @@
-package org.example.rideshare;
+package org.example.rideshare.model;
 
 public enum Role {
     ROLE_USER,
