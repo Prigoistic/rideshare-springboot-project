@@ -66,10 +66,17 @@ out/
 .env
 .env.*
 *.env
+.env.properties
 *.key
 *.pem
 *.p12
 *.keystore
+
+###############################
+# Application logs
+###############################
+app.log
+nohup.out
 
 ###############################
 # Spring Boot (local overrides)
