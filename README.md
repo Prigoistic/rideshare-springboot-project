@@ -1,4 +1,4 @@
-# 🚗 RideShare Backend - Complete Mini Project
+# RideShare Backend - Complete Mini Project
 
 <div align="center">
 
@@ -15,7 +15,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Features](#-features)
@@ -31,28 +31,28 @@
 
 ---
 
-## 🎯 Overview
+## Overview
 
 A complete ride-sharing backend application built with Spring Boot, MongoDB, and JWT authentication. This project implements clean architecture principles with proper separation of concerns, input validation, and comprehensive error handling.
 
 ### What This Project Does
 
-- 👥 **User Management**: Register and authenticate users (Passengers & Drivers)
-- 🚗 **Ride Requests**: Passengers can request rides
-- 🚕 **Ride Acceptance**: Drivers can view and accept ride requests
-- ✅ **Ride Completion**: Both parties can mark rides as completed
-- 📊 **Ride History**: Users can view their past rides
-- 🔒 **Security**: JWT-based authentication with role-based access control
+- **User Management**: Register and authenticate users (Passengers & Drivers)
+- **Ride Requests**: Passengers can request rides
+- **Ride Acceptance**: Drivers can view and accept ride requests
+- **Ride Completion**: Both parties can mark rides as completed
+- **Ride History**: Users can view their past rides
+- **Security**: JWT-based authentication with role-based access control
 
 ---
 
-## ✨ Features
+## Features
 
 <table>
 <tr>
 <td width="50%">
 
-### 🔐 Authentication & Security
+### Authentication & Security
 - ✅ User registration with role selection
 - ✅ JWT token-based authentication
 - ✅ BCrypt password encryption
@@ -62,7 +62,7 @@ A complete ride-sharing backend application built with Spring Boot, MongoDB, and
 </td>
 <td width="50%">
 
-### 🎯 Core Functionality
+### Core Functionality
 - ✅ Create ride requests
 - ✅ View available rides (Driver)
 - ✅ Accept rides (Driver)
@@ -74,7 +74,7 @@ A complete ride-sharing backend application built with Spring Boot, MongoDB, and
 <tr>
 <td width="50%">
 
-### 🛡️ Quality & Standards
+### Quality & Standards
 - ✅ Input validation on all endpoints
 - ✅ Global exception handling
 - ✅ Clean architecture pattern
@@ -84,7 +84,7 @@ A complete ride-sharing backend application built with Spring Boot, MongoDB, and
 </td>
 <td width="50%">
 
-### 📦 Production Ready
+### Production Ready
 - ✅ Zero compilation errors
 - ✅ MongoDB Atlas integration
 - ✅ Comprehensive API documentation
@@ -112,7 +112,7 @@ A complete ride-sharing backend application built with Spring Boot, MongoDB, and
 
 ---
 
-## 🏗️ Architecture Diagram
+## Architecture Diagram
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -176,7 +176,7 @@ A complete ride-sharing backend application built with Spring Boot, MongoDB, and
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/main/java/org/example/rideshare/
@@ -230,7 +230,7 @@ src/main/resources/
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Entity Relationship Diagram
 
@@ -292,7 +292,7 @@ User creates  Driver    User/Driver
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -303,12 +303,12 @@ User creates  Driver    User/Driver
 
 ### Setup Steps
 
-#### 1️⃣ Clone & Navigate
+#### Clone & Navigate
 ```bash
 cd rideshare-backend
 ```
 
-#### 2️⃣ Configure Environment
+#### Configure Environment
 Create `.env.properties` in project root:
 
 ```properties
@@ -318,30 +318,30 @@ JWT_SECRET=ridesharebackendsupersecretkeyforjwttokensigning2025secureandverylong
 JWT_EXPIRATION=86400000
 ```
 
-> ⚠️ **Important**: JWT_SECRET must be at least 32 characters (256 bits) with alphanumeric characters only
+> **Important**: JWT_SECRET must be at least 32 characters (256 bits) with alphanumeric characters only
 
-#### 3️⃣ Build Project
+#### Build Project
 ```bash
 ./mvnw clean package
 ```
 
-#### 4️⃣ Run Application
+#### Run Application
 ```bash
 ./mvnw spring-boot:run
 ```
 
-#### 5️⃣ Verify Setup
+#### Verify Setup
 ```bash
 curl -X POST http://localhost:8081/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"username":"testuser","password":"pass123","role":"ROLE_USER"}'
 ```
 
-✅ **Success!** You should see: `{"message":"User registered successfully","username":"testuser"}`
+**Success!** You should see: `{"message":"User registered successfully","username":"testuser"}`
 
 ---
 
-## 🔗 API Endpoints
+## API Endpoints
 
 ### 📌 Authentication Endpoints (Public)
 
@@ -368,7 +368,7 @@ curl -X POST http://localhost:8081/api/auth/register \
 
 ---
 
-## 🧪 Testing Guide
+## Testing Guide
 
 ### Complete Test Flow
 
