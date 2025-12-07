@@ -1,37 +1,46 @@
 package org.example.rideshare.config;
 
+import org.example.rideshare.service.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/**
- * Disables Spring Security's default login page and permits all requests.
- *
- * This project doesn't define authentication yet, but includes spring-security
- * as a dependency (for future JWT support). Without this explicit config,
- * Spring Security auto-configures a default form login at /login.
- */
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
+
+    @Autowired
+    private JwtFilter jwtFilter;
+
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            // We are not using browser forms or sessions; disable CSRF for now
-            .csrf(csrf -> csrf.disable())
-            // Stateless because we plan to use token-based auth in the future
-            .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            // Do not enable the default login page or HTTP Basic dialog
-            .formLogin(form -> form.disable())
-            .httpBasic(basic -> basic.disable())
-            // Allow all endpoints (adjust later when adding real auth)
-            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-            // No additional customization needed
-            .logout(Customizer.withDefaults());
+
+        http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(sess ->
+                        sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 }
